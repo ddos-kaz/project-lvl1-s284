@@ -1,20 +1,21 @@
 {
   "name": "brain-games-ddos-kz",
-  "version": "1.0.0",
+  "version": "2.0.2",
   "description": "Hexlet 1st level practice project.",
   "main": "index.js",
-  "scripts": {
-    "src/bin/brain-games.js": "chmod +x brain-games.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "NODE_ENV=production babel src --out-dir dist",
-    "prepublishOnly": "npm run build",
-    "babel-node" : "babel-node"
-  },
-  "files" : [
-     "dist"
-   ],
   "bin": {
-     "brain-games": "dist/bin/brain-games.js"
+    "brain-games": "dist/bin/brain-games.js",
+    "import { getUserName } from '..';" : "import { getUserName } from 'src/index'"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "babel": "babel",
+    "babel-node": "babel-node",
+    "brain-games.js": "chmod a+x brain-games.js",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -31,5 +32,8 @@
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.9"
   }
 }
