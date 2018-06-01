@@ -69,13 +69,15 @@ const brainCalc = () => {
     return null;
   };
   const operationType = ['+', '-', '*'];
-
+  const FLOOR_OF_RANDOM_OPERATOR = 0;
+  const CEIL_OF_RANDOM_OPERATOR = 2;
   let round = 1;
   while (round <= GAME_ROUND_CEIL) {
     const randomNumberOne = generateRandomNumber(FLOOR_OF_RANDOM_NUMBER, CEIL_OF_RANDOM_NUMBER);
     const randomNumberTwo = generateRandomNumber(FLOOR_OF_RANDOM_NUMBER, CEIL_OF_RANDOM_NUMBER);
-    const gameQuestion = `${randomNumberOne} ${operationType[round - 1]} ${randomNumberTwo}`;
-    const gameAnswer = gameFunction(randomNumberOne, randomNumberTwo, operationType[round - 1]);
+    const operator = generateRandomNumber(FLOOR_OF_RANDOM_OPERATOR, CEIL_OF_RANDOM_OPERATOR);
+    const gameQuestion = `${randomNumberOne} ${operationType[operator]} ${randomNumberTwo}`;
+    const gameAnswer = gameFunction(randomNumberOne, randomNumberTwo, operationType[operator]);
     if (!gameFlow(gameQuestion, gameAnswer)) {
       return;
     }
@@ -84,4 +86,30 @@ const brainCalc = () => {
   gameConclusion();
 };
 
-export { brainEven, brainCalc, getUserName };
+const brainGCD = () => {
+  gameIntroduction();
+  gameDescription('Find the greatest common divisor of given numbers.');
+  gameUserName();
+  const gameFunction = (num1, num2) => {
+    if (num2 > 0) {
+      const remainder = num1 % num2;
+      return gameFunction(num2, remainder);
+    }
+    return num1;
+  };
+
+  let round = 1;
+  while (round <= GAME_ROUND_CEIL) {
+    const randomNumberOne = generateRandomNumber(FLOOR_OF_RANDOM_NUMBER, CEIL_OF_RANDOM_NUMBER);
+    const randomNumberTwo = generateRandomNumber(FLOOR_OF_RANDOM_NUMBER, CEIL_OF_RANDOM_NUMBER);
+    const gameQuestion = `${randomNumberOne} ${randomNumberTwo}`;
+    const gameAnswer = gameFunction(randomNumberOne, randomNumberTwo);
+    if (!gameFlow(gameQuestion, gameAnswer)) {
+      return;
+    }
+    round += 1;
+  }
+  gameConclusion();
+};
+
+export { brainEven, brainCalc, brainGCD, getUserName };
