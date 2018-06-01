@@ -1,11 +1,12 @@
 {
   "name": "brain-games-ddos-kz",
-  "version": "4.0.14",
+  "version": "5.0.1",
   "description": "Hexlet 1st level practice project.",
   "main": "index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/brain-even.js"
+    "brain-even": "dist/bin/brain-even.js",
+    "brain-calc": "dist/bin/brain-calc.js"
   },
   "files": [
     "dist"
@@ -39,6 +40,7 @@
     "eslint-plugin-import": "^2.12.0"
   },
   "dependencies": {
+    "hexlet-pairs": "^1.0.7",
     "readline-sync": "^1.4.9"
   }
 }
