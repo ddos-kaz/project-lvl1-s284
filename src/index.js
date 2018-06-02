@@ -1,10 +1,8 @@
 import readlineSync from 'readline-sync';
-import { gameIntroduction, gameDescription, gameUserName, gameFlow, gameConclusion } from './gameFlow';
-
-const FLOOR_OF_RANDOM_NUMBER = 0;
-const CEIL_OF_RANDOM_NUMBER = 100;
-const GAME_ROUND_CEIL = 3;
-const generateRandomNumber = (min, max) => Math.floor(min + (Math.random() * ((max + 1) - min)));
+import brainCalcModule from './brain-calc-module';
+import brainGCDModule from './brain-gcd-module';
+import brainEvenModule from './brain-even-module';
+import brainBalanceModule from './brain-balance-module';
 
 const getUserName = () => {
   console.log('Welcome to the Brain Games');
@@ -12,104 +10,12 @@ const getUserName = () => {
   console.log(`Hello, ${name}!`);
 };
 
-const brainEven = () => {
-  /* console.log('Welcome to the Brain Games');
-  console.log('Answer "yes" if number even otherwise answer "no".\n');
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!\n`);
+const brainEven = brainEvenModule;
 
-  let round = 1;
-  while (round <= GAME_ROUND_CEIL) {
-    const randomNumber = generateRandomNumber(FLOOR_OF_RANDOM_NUMBER, CEIL_OF_RANDOM_NUMBER);
-    console.log(`Quesion: ${randomNumber}`);
-    const systemAnswer = randomNumber % 2 === 0 ? 'yes' : 'no';
-    const userAnswer = readlineSync.question('Your answer: ');
-    if (userAnswer === systemAnswer) {
-      console.log('Correct');
-    } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${systemAnswer}'.`);
-      console.log(`Let's try again, ${userName}!\n`);
-      return;
-    }
-    round += 1;
-  }
-  console.log(`Congratulations, ${userName}!\n`); */
-  gameIntroduction();
-  gameDescription('Answer "yes" if number even otherwise answer "no".');
-  gameUserName();
-  const gameFunction = num => (num % 2 === 0 ? 'yes' : 'no');
+const brainCalc = brainCalcModule;
 
-  let round = 1;
-  while (round <= GAME_ROUND_CEIL) {
-    const randomNumber = generateRandomNumber(FLOOR_OF_RANDOM_NUMBER, CEIL_OF_RANDOM_NUMBER);
-    const gameQuestion = `${randomNumber}`;
-    const gameAnswer = gameFunction(randomNumber);
-    if (!gameFlow(gameQuestion, gameAnswer)) {
-      return;
-    }
-    round += 1;
-  }
-  gameConclusion();
-};
+const brainGCD = brainGCDModule;
 
-const brainCalc = () => {
-  gameIntroduction();
-  gameDescription('What is the result of the expression?');
-  gameUserName();
-  const gameFunction = (num1, num2, operation) => {
-    if (operation === '+') {
-      return num1 + num2;
-    }
-    if (operation === '-') {
-      return num1 - num2;
-    }
-    if (operation === '*') {
-      return num1 * num2;
-    }
-    return null;
-  };
-  const operationType = ['+', '-', '*'];
-  const FLOOR_OF_RANDOM_OPERATOR = 0;
-  const CEIL_OF_RANDOM_OPERATOR = 2;
-  let round = 1;
-  while (round <= GAME_ROUND_CEIL) {
-    const randomNumberOne = generateRandomNumber(FLOOR_OF_RANDOM_NUMBER, CEIL_OF_RANDOM_NUMBER);
-    const randomNumberTwo = generateRandomNumber(FLOOR_OF_RANDOM_NUMBER, CEIL_OF_RANDOM_NUMBER);
-    const operator = generateRandomNumber(FLOOR_OF_RANDOM_OPERATOR, CEIL_OF_RANDOM_OPERATOR);
-    const gameQuestion = `${randomNumberOne} ${operationType[operator]} ${randomNumberTwo}`;
-    const gameAnswer = gameFunction(randomNumberOne, randomNumberTwo, operationType[operator]);
-    if (!gameFlow(gameQuestion, gameAnswer)) {
-      return;
-    }
-    round += 1;
-  }
-  gameConclusion();
-};
+const brainBalance = brainBalanceModule;
 
-const brainGCD = () => {
-  gameIntroduction();
-  gameDescription('Find the greatest common divisor of given numbers.');
-  gameUserName();
-  const gameFunction = (num1, num2) => {
-    if (num2 > 0) {
-      const remainder = num1 % num2;
-      return gameFunction(num2, remainder);
-    }
-    return num1;
-  };
-
-  let round = 1;
-  while (round <= GAME_ROUND_CEIL) {
-    const randomNumberOne = generateRandomNumber(FLOOR_OF_RANDOM_NUMBER, CEIL_OF_RANDOM_NUMBER);
-    const randomNumberTwo = generateRandomNumber(FLOOR_OF_RANDOM_NUMBER, CEIL_OF_RANDOM_NUMBER);
-    const gameQuestion = `${randomNumberOne} ${randomNumberTwo}`;
-    const gameAnswer = gameFunction(randomNumberOne, randomNumberTwo);
-    if (!gameFlow(gameQuestion, gameAnswer)) {
-      return;
-    }
-    round += 1;
-  }
-  gameConclusion();
-};
-
-export { brainEven, brainCalc, brainGCD, getUserName };
+export { getUserName, brainEven, brainCalc, brainGCD, brainBalance };
