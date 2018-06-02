@@ -1,36 +1,36 @@
 import { cons } from 'hexlet-pairs';
 import gameFlowProcess from './gameFlow';
+import generateRandomNumber from './randomNumberGeneration';
 
-const FLOOR_OF_RANDOM_NUMBER = 0;
-const CEIL_OF_RANDOM_NUMBER = 10000;
-const generateRandomNumber = (min, max) => Math.floor(min + (Math.random() * ((max + 1) - min)));
+const floorOfRandomNumber = 0;
+const ceilOfRandomNumber = 10000;
 
-const brainGCDModule = () => {
-  const gameDescription = 'Balance the given number.';
-  const gameFunction = () => {
-    const randomNumber = generateRandomNumber(FLOOR_OF_RANDOM_NUMBER, CEIL_OF_RANDOM_NUMBER);
-    const question = `${randomNumber}`;
-    const strRN = String(randomNumber);
-    const lenRN = strRN.length;
-    let index = 0;
-    let sumOfDigits = 0;
-    while (index < lenRN) {
-      sumOfDigits += Number(strRN[index]);
-      index += 1;
+const gameFunction = () => {
+  const randomNumber = generateRandomNumber(floorOfRandomNumber, ceilOfRandomNumber);
+  const question = `${randomNumber}`;
+  const stringOfRandomNumber = String(randomNumber);
+  const lengthOfRandomNumber = stringOfRandomNumber.length;
+  let index = 0;
+  let sumOfDigits = 0;
+  while (index < lengthOfRandomNumber) {
+    sumOfDigits += Number(stringOfRandomNumber[index]);
+    index += 1;
+  }
+
+  const balanceNumber = (totalSum, counter) => {
+    if (counter === 1) {
+      return totalSum;
     }
-
-    const balanceNumber = (totalSum, counter) => {
-      if (counter === 1) {
-        return totalSum;
-      }
-      const n = Math.floor(totalSum / counter);
-      return `${n}${balanceNumber(totalSum - n, counter - 1)}`;
-    };
-
-    const systemAnswer = balanceNumber(sumOfDigits, lenRN);
-    return cons(question, systemAnswer);
+    const n = Math.floor(totalSum / counter);
+    return `${n}${balanceNumber(totalSum - n, counter - 1)}`;
   };
-  gameFlowProcess(gameDescription, gameFunction);
+
+  const systemAnswer = balanceNumber(sumOfDigits, lengthOfRandomNumber);
+  return cons(question, systemAnswer);
 };
 
-export { brainGCDModule as default };
+const gameDescription = 'Balance the given number.';
+
+const brainBalance = () => gameFlowProcess(gameDescription, gameFunction);
+
+export { brainBalance as default };
