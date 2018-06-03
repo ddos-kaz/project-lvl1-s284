@@ -5,27 +5,29 @@ import generateRandomNumber from '../utils';
 const floorOfRandomNumber = 0;
 const ceilOfRandomNumber = 10000;
 
-const balanceNumber = (totalSum, counter) => {
-  if (counter === 1) {
-    return totalSum;
+const balanceNumber = (number) => {
+  const numberString = String(number);
+  const numberStringLength = numberString.length;
+  let index = 0;
+  let sumOfDigits = 0;
+  while (index < numberStringLength) {
+    sumOfDigits += Number(numberString[index]);
+    index += 1;
   }
-  const n = Math.floor(totalSum / counter);
-  return `${n}${balanceNumber(totalSum - n, counter - 1)}`;
+  const iter = (counter, acc) => {
+    if (counter === 1) {
+      return acc;
+    }
+    const n = Math.floor(acc / counter);
+    return `${n}${iter(counter - 1, acc - n)}`;
+  };
+  return iter(numberStringLength, sumOfDigits);
 };
 
 const gameFunction = () => {
   const randomNumber = generateRandomNumber(floorOfRandomNumber, ceilOfRandomNumber);
   const question = `${randomNumber}`;
-  const stringOfRandomNumber = String(randomNumber);
-  const lengthOfRandomNumber = stringOfRandomNumber.length;
-  let index = 0;
-  let sumOfDigits = 0;
-  while (index < lengthOfRandomNumber) {
-    sumOfDigits += Number(stringOfRandomNumber[index]);
-    index += 1;
-  }
-
-  const systemAnswer = balanceNumber(sumOfDigits, lengthOfRandomNumber);
+  const systemAnswer = balanceNumber(randomNumber);
   return cons(question, systemAnswer);
 };
 
