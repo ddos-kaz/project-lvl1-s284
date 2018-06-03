@@ -1,5 +1,5 @@
 import { cons } from 'hexlet-pairs';
-import gameFlowProcess from './gameFlow';
+import gameFlowProcess from '../gameFlow';
 import generateRandomNumber from '../utils';
 
 const estimateProgression = (a1, n, d) => a1 + ((n - 1) * d); // Здесь я использую формулу

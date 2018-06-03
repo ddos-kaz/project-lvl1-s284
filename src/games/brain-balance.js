@@ -1,19 +1,23 @@
 import { cons } from 'hexlet-pairs';
-import gameFlowProcess from './gameFlow';
+import gameFlowProcess from '../gameFlow';
 import generateRandomNumber from '../utils';
 
 const floorOfRandomNumber = 0;
 const ceilOfRandomNumber = 10000;
 
-const balanceNumber = (number) => {
-  const numberString = String(number);
-  const numberStringLength = numberString.length;
+const sumOfAllDigits = (strNumber) => {
+  const numberStringLength = strNumber.length;
   let index = 0;
   let sumOfDigits = 0;
   while (index < numberStringLength) {
-    sumOfDigits += Number(numberString[index]);
+    sumOfDigits += Number(strNumber[index]);
     index += 1;
   }
+  return sumOfDigits;
+};
+
+const balanceNumber = (number) => {
+  const numberString = String(number);
   const iter = (counter, acc) => {
     if (counter === 1) {
       return acc;
@@ -21,7 +25,7 @@ const balanceNumber = (number) => {
     const n = Math.floor(acc / counter);
     return `${n}${iter(counter - 1, acc - n)}`;
   };
-  return iter(numberStringLength, sumOfDigits);
+  return iter(numberString.length, sumOfAllDigits(numberString));
 };
 
 const gameFunction = () => {

@@ -1,28 +1,28 @@
 import { cons } from 'hexlet-pairs';
-import gameFlowProcess from './gameFlow';
+import gameFlowProcess from '../gameFlow';
 import generateRandomNumber from '../utils';
 
 const floorOfRandomNumber = 0;
 const ceilOfRandomNumber = 1000;
 const isPrime = (number) => {
   if (number === 0 || number === 1) {
-    return 'no';
+    return false;
   }
   if (number % 2 === 0) {
-    return 'no';
+    return false;
   }
   for (let i = 3; i < Math.floor(Math.sqrt(number)); i += 2) {
     if (number % i === 0) {
-      return 'no';
+      return false;
     }
   }
-  return 'yes';
+  return true;
 };
 
 const gameFunction = () => {
   const randomNumber = generateRandomNumber(floorOfRandomNumber, ceilOfRandomNumber);
   const question = `${randomNumber}`;
-  const systemAnswer = isPrime(randomNumber);
+  const systemAnswer = isPrime(randomNumber) ? 'yes' : 'no';
   return cons(question, systemAnswer);
 };
 
