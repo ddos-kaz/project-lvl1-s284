@@ -1,15 +1,15 @@
 import { cons } from 'hexlet-pairs';
 import gameFlowProcess from './gameFlow';
-import generateRandomNumber from './randomNumberGeneration';
+import generateRandomNumber from '../utils';
 
+const estimateProgression = (a1, n, d) => a1 + ((n - 1) * d); // Здесь я использую формулу
 const floorOfRandomNumber = 0;
 const ceilOfRandomNumber = 100;
 const ceilOfProgressionCount = 10;
 const gameFunction = () => {
   const start = generateRandomNumber(floorOfRandomNumber, ceilOfRandomNumber);
   const difference = generateRandomNumber(floorOfRandomNumber, ceilOfRandomNumber);
-  const missingOrder = generateRandomNumber(floorOfRandomNumber, ceilOfProgressionCount);
-  const estimateProgression = (a1, n, d) => a1 + ((n - 1) * d); // Здесь я использую формулу
+  const missingOrder = generateRandomNumber(1, ceilOfProgressionCount);
   let index = 1;
   let question = '';
   let systemAnswer = 0;

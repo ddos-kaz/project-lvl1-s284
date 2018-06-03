@@ -1,14 +1,15 @@
 import { cons } from 'hexlet-pairs';
 import gameFlowProcess from './gameFlow';
-import generateRandomNumber from './randomNumberGeneration';
+import generateRandomNumber from '../utils';
 
 const floorOfRandomNumber = 0;
 const ceilOfRandomNumber = 1000;
+const isEven = number => number % 2 === 0;
 
 const gameFunction = () => {
   const randomNumber = generateRandomNumber(floorOfRandomNumber, ceilOfRandomNumber);
   const question = `${randomNumber}`;
-  const systemAnswer = randomNumber % 2 === 0 ? 'yes' : 'no';
+  const systemAnswer = isEven(randomNumber) ? 'yes' : 'no';
   return cons(question, systemAnswer);
 };
 

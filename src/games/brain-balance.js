@@ -1,9 +1,17 @@
 import { cons } from 'hexlet-pairs';
 import gameFlowProcess from './gameFlow';
-import generateRandomNumber from './randomNumberGeneration';
+import generateRandomNumber from '../utils';
 
 const floorOfRandomNumber = 0;
 const ceilOfRandomNumber = 10000;
+
+const balanceNumber = (totalSum, counter) => {
+  if (counter === 1) {
+    return totalSum;
+  }
+  const n = Math.floor(totalSum / counter);
+  return `${n}${balanceNumber(totalSum - n, counter - 1)}`;
+};
 
 const gameFunction = () => {
   const randomNumber = generateRandomNumber(floorOfRandomNumber, ceilOfRandomNumber);
@@ -16,14 +24,6 @@ const gameFunction = () => {
     sumOfDigits += Number(stringOfRandomNumber[index]);
     index += 1;
   }
-
-  const balanceNumber = (totalSum, counter) => {
-    if (counter === 1) {
-      return totalSum;
-    }
-    const n = Math.floor(totalSum / counter);
-    return `${n}${balanceNumber(totalSum - n, counter - 1)}`;
-  };
 
   const systemAnswer = balanceNumber(sumOfDigits, lengthOfRandomNumber);
   return cons(question, systemAnswer);

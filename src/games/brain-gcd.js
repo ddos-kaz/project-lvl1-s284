@@ -1,6 +1,6 @@
 import { cons } from 'hexlet-pairs';
 import gameFlowProcess from './gameFlow';
-import generateRandomNumber from './randomNumberGeneration';
+import generateRandomNumber from '../utils';
 
 const floorOfRandomNumber = 1;
 const ceilOfRandomNumber = 100;

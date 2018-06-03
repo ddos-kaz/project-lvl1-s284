@@ -1,6 +1,6 @@
 {
   "name": "brain-games-ddos-kz",
-  "version": "7.0.2",
+  "version": "7.0.3",
   "description": "Hexlet 1st level practice project.",
   "main": "index.js",
   "bin": {
